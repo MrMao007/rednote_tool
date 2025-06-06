@@ -67,6 +67,7 @@ def publish_video(playwright: Playwright,
 with sync_playwright() as playwright:
     publish_text(
         playwright,
+        #替换成自己的图片URL列表
         image_urls=["xxxx", "xxxx"],
         title="这是一个测试标题",
         content="这是一个测试内容",
