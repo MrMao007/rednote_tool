@@ -49,6 +49,20 @@ def publish_text(playwright: Playwright,
     context.close()
     browser.close()
 
+def publish_video(playwright: Playwright, 
+                 video_url: str, 
+                 title: str, 
+                 content: str,
+                 tags: List[str]) -> None:
+    """
+    发布小红书视频笔记
+    :param playwright: Playwright实例
+    :param video_url: 视频URL
+    :param title: 笔记标题
+    :param content: 笔记内容
+    :param tags: 标签列表
+    """
+    return
 
 with sync_playwright() as playwright:
     publish_text(
