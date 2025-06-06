@@ -53,8 +53,8 @@ def publish_text(playwright: Playwright,
 with sync_playwright() as playwright:
     publish_text(
         playwright,
-        image_urls=["/Users/maotianyang/Downloads/IMG_4097.JPG", "/Users/maotianyang/Downloads/IMG_3290.JPG"],
+        image_urls=["xxxx", "xxxx"],
         title="这是一个测试标题",
         content="这是一个测试内容",
-        tags=["测试", "小红书", "Playwright"]
+        tags=["测试", "小红书"]
     )
