@@ -10,6 +10,7 @@
 #### 环境
 ```bash
 pip install -r requirements.txt
+python -m playwright install
 ```
 #### 登录
 ```bash
