@@ -7,6 +7,10 @@
 - 搜索 ⚫️
 
 ### HOW TO USE
+#### 环境
+```bash
+pip install -r requirements.txt
+```
 #### 登录
 ```bash
 python rednote_login.py
