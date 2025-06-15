@@ -21,7 +21,7 @@ def publish_text(playwright: Playwright,
     page = context.new_page()
     page.goto("https://www.xiaohongshu.com/explore")
     print("🌐 导航到小红书主页...")
-    page.wait_for_timeout(5000)  # 等待页面加载完成
+    page.wait_for_timeout(10000)
     login_button = page.locator("form").get_by_role("button", name="登录")
     if(login_button.is_visible()):
         print("❌ 未登录小红书，请先登录")
@@ -32,10 +32,14 @@ def publish_text(playwright: Playwright,
         page.get_by_role("link", name="创作服务").click()
         
     page1 = page1_info.value
-    page1.on("filechooser", lambda file_chooser: file_chooser.set_files(image_urls))
     print("🕒 等待页面跳转")
     
     page1.get_by_text("发布图文笔记").click()
+    with page1.expect_file_chooser() as fc_info:
+        page1.get_by_role("button", name="Choose File").click()
+    file_chooser = fc_info.value
+    file_chooser.set_files(image_urls)
+    
     page1.get_by_role("textbox", name="填写标题会有更多赞哦～").fill(title)
     final_content = content + "\n\n" + " ".join([f"#{tag}" for tag in tags])
     page1.locator("#quillEditor div").fill(final_content)
@@ -68,7 +72,7 @@ with sync_playwright() as playwright:
     publish_text(
         playwright,
         #替换成自己的图片URL列表
-        image_urls=["xxxx", "xxxx"],
+        image_urls=["/Users/maotianyang/Documents/single.png", "/Users/maotianyang/Documents/single2.png"],
         title="这是一个测试标题",
         content="这是一个测试内容",
         tags=["测试", "小红书"]
